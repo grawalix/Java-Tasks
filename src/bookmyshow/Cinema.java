@@ -20,6 +20,10 @@ public class Cinema {
 		testtheatre.createRows(1, 10, 7);
 		theatres.add(testtheatre);
 		
+		Theatre testtheatre1=new Theatre(2, "Logix Noida");
+		testtheatre.createRows(1, 5, 7);
+		theatres.add(testtheatre1);
+		
 		shows.add(new Show("Avengers","10-10-2020","3PM",theatres.get(0)));
 		shows.add(new Show("Joker", "12-10-2020", "6PM", theatres.get(0)));
 		shows.add(new Show("Wonderwoman","9-10-2020", "12PM", theatres.get(0)));
@@ -49,7 +53,7 @@ public class Cinema {
 				System.out.println("enter the number of rows");
 				int rowcount=choice.nextInt();
 				Theatre theatre=new Theatre(theatreno, theatrename);
-				theatre.createRows(1, 10, rowcount);
+//				theatre.createRows(1, 10, rowcount);
 				theatre.createRows(1,5, 5);
 				theatres.add(theatre);
 			}
@@ -64,12 +68,12 @@ public class Cinema {
 				System.out.println("enter time of movie");
 				String showtime=choice.nextLine();
 				System.out.println("Select a theatre by typing the number:");
-				
+				int theatreno=choice.nextInt();
+
 				for (int i = 0; i < theatres.size(); i++) {
 					System.out.println(i+1 + " " + theatres.get(i).getDescription());
 				}
 				
-				int theatreno=choice.nextInt();
 				shows.add(new Show(showname, showdate, showtime, theatres.get(theatreno-1)));
 			}
 			
@@ -79,13 +83,21 @@ public class Cinema {
 				
 				for (int i = 0; i < shows.size(); i++) {
 					int shownumber = i+1;
-					System.out.println("Show Number" +shownumber);
-					System.out.println("Show Name" +shows.get(i).getShowname());
-					System.out.println("Show Date" +shows.get(i).getShowname());
-					System.out.println("Show Time" +shows.get(i).getShowtime());
+					System.out.println("Show Number - " +shownumber);
+					System.out.println("Show Name - " +shows.get(i).getShowname());
+					System.out.println("Show Date - " +shows.get(i).getShowdate());
+					System.out.println("Show Time - " +shows.get(i).getShowtime());
+					
+					System.out.println("\n");
 					
 					
 				}
+				
+				System.out.println("End of show list");
+			}
+			
+			if (option==4) {
+				
 			}
 			
 		} while (false);
