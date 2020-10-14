@@ -60,7 +60,7 @@ public class Booking {
           return true;
           }
            
-        public Customer getCostumer()
+        public Customer getCustomer()
           {
                   return customer;
             }

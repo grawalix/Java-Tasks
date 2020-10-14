@@ -10,6 +10,7 @@ public class Show {
 	private Theatre theatre;
 	private ArrayList<Seat> seats;
 	private int freeSeats;
+	
 	public Show(String showname, String showdate,String showtime, Theatre theatre) {
 		this.showname = showname;
 		this.showdate = showdate;

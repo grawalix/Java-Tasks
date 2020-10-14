@@ -7,6 +7,9 @@ public class Customer {
 	String csurname;
 	String city;
 	
+	public Customer(int customerid) {
+		// TODO Auto-generated constructor stub
+	}
 	public int getCid() {
 		return cid;
 	}

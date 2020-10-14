@@ -1,6 +1,7 @@
 package bookmyshow;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Cinema {
@@ -20,9 +21,7 @@ public class Cinema {
 		testtheatre.createRows(1, 10, 7);
 		theatres.add(testtheatre);
 		
-		Theatre testtheatre1=new Theatre(2, "Logix Noida");
-		testtheatre.createRows(1, 5, 7);
-		theatres.add(testtheatre1);
+
 		
 		shows.add(new Show("Avengers","10-10-2020","3PM",theatres.get(0)));
 		shows.add(new Show("Joker", "12-10-2020", "6PM", theatres.get(0)));
@@ -30,10 +29,14 @@ public class Cinema {
 		shows.add(new Show("A Wednesday", "06-10-2020", "9PM", theatres.get(0)));
 		shows.add(new Show("300", "05-10-2020", "9AM", theatres.get(0)));
 		
+
+		
+		
 		do {
 			
-			System.out.println("-----------------");
+			
 			System.out.println("movie ticket booking system");
+			System.out.println("-----------------");
 			System.out.println("Please Enter 1 to Add Theatre");
 			System.out.println("Please Enter 2 to Add Show");
 			System.out.println("Please Enter 3 to Display Shows");
@@ -44,7 +47,7 @@ public class Cinema {
 			option=select.nextInt();
 			
 			if(option==1) {
-				System.out.println("add theatre selected");
+				System.out.println("add theatre ");
 				System.out.println("------------------------");
 				System.out.println("enter the name of theatre");
 				String theatrename=choice.nextLine();
@@ -53,7 +56,7 @@ public class Cinema {
 				System.out.println("enter the number of rows");
 				int rowcount=choice.nextInt();
 				Theatre theatre=new Theatre(theatreno, theatrename);
-//				theatre.createRows(1, 10, rowcount);
+    			theatre.createRows(1, 10, rowcount);
 				theatre.createRows(1,5, 5);
 				theatres.add(theatre);
 			}
@@ -78,6 +81,26 @@ public class Cinema {
 			}
 			
 			if (option==3) {
+				System.out.println("Name of theatre - "  +testtheatre.getDescription() );
+				System.out.println("-------------------------");
+				
+				System.out.println("press 1 for Luxury Seats");
+				System.out.println("press 2 for Premium Seats");
+				System.out.println("press 3 for General Seats");
+
+				int input=choice.nextInt();
+				System.out.println("HI");
+				if(input==1)
+				{
+					System.out.println("your seat type is luxury");
+				}
+				else if (input==2) {
+					System.out.println("your seat type is premium");
+				} 
+				else if (input==3) {
+					System.out.println("your seat type is General");
+				}
+				
 				System.out.println("Display shows selected");
 				System.out.println("----------------");
 				
@@ -88,20 +111,108 @@ public class Cinema {
 					System.out.println("Show Date - " +shows.get(i).getShowdate());
 					System.out.println("Show Time - " +shows.get(i).getShowtime());
 					
-					System.out.println("\n");
-					
-					
+					System.out.println("\n");	
 				}
-				
-				System.out.println("End of show list");
+					System.out.println("End of show list");
 			}
 			
 			if (option==4) {
+				System.out.println("Make Booking Selected");
+				System.out.println("---------------------");
+				Random rn=new Random();
+				int customerid=rn.nextInt(999);
+				Customer customer=new Customer(customerid);
+				customers.add(customer);
 				
+				for (int i = 0; i < shows.size(); i++) {
+					int shownumber= i+1;
+					System.out.println("Show Number - " +shownumber);
+					System.out.println("Show Name - " +shows.get(i).getShowname());
+					System.out.println("Show Date - " +shows.get(i).getShowdate());
+					System.out.println("Show Time - "+shows.get(i).getShowtime());
+					
+					System.out.println("\n");
+				}
+				
+				System.out.println("-----------------");
+				System.out.println("enter the show number");
+				int shownumber=choice.nextInt();
+				int repeat=0;
+				System.out.println();
+				
+				do {
+					shows.get(shownumber-1).getTheatre().printSeatPlan();
+					System.out.println("enter the row");
+					int selectedrow=choice.nextInt();
+					System.out.println("enter the selected seat");
+					int selectedseat=choice.nextInt();
+					System.out.println();
+					Booking booking=new Booking(customer, shows.get(shownumber-1));
+					
+					if (booking.reservedSeat(selectedrow-1, selectedseat-1)) {
+						bookings.add(booking);
+						System.out.println("Seat has been booked");
+						
+					}
+					else {
+                    System.out.println("seat has been already booked"); 
+					}
+					System.out.println();
+					System.out.println("enter 1 to book another seat ");
+					System.out.println("enter 2 for checkout");
+					repeat=choice.nextInt();
+					
+				}
+				
+				while(repeat==1);
+				System.out.println();
+				System.out.println("your bill");
+				System.out.println("---------------");
+				int totalcost=0;
+				
+				for (Booking booking:bookings)
+				{
+					if(booking.getCustomer().getCid()==customer.getCid())
+					{
+						totalcost +=booking.getCost();
+					}
+				}
+				System.out.println("Customer Id" +customer.getCid());
+				System.out.println("Total Cost - " +totalcost+ "Ruppees");
+				System.out.println();
 			}
 			
-		} while (false);
+			if (option==5) {
+				System.out.println("Cancel the booked ticket");
+				System.out.println("---------------------------");
+				System.out.println("enter the Customer ID");
+			    int customerid=choice.nextInt();
+			    
+			    for (Customer customer : customers) {
+					if(customer.getCid()==customerid)
+					{
+						for (Booking booking:bookings)
+						{
+							if(booking.getCustomer().getCid()==customer.getCid()) 
+							{
+                            if(booking.unreserveSeat()) {
+						}
+
+					}
+				}
+						System.out.println("your ticket has been canceled");
+			}
+			
+		} 
+			    System.out.println();
+			}
+			    if(option==6) {
+			    	System.exit(0);
+			    }
+		}
+			    while (true);
 		
 		
 	}
 }
+	
