@@ -2,12 +2,22 @@ package bookmyshow;
 
 public class Seat {
 	int seatNumber;
+	int rowNumber;
 	boolean isReserved;
 	
 	public Seat(boolean isReserved, int seatNumber)
 	{
 	this.isReserved = isReserved;
 	this.seatNumber = seatNumber;
+	
+	}
+
+	public int getRowNumber() {
+		return rowNumber;
+	}
+
+	public void setRowNumber(int rowNumber) {
+		this.rowNumber = rowNumber;
 	}
 
 	public void setSeatNumber(int seatNumber)
@@ -34,4 +44,6 @@ public class Seat {
 	{
 	isReserved = false;
 	}
+
+	
 }

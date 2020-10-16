@@ -18,7 +18,9 @@ public class Cinema {
 		Scanner choice=new Scanner(System.in);
 		
 		Theatre testtheatre=new Theatre(1, "PVR Noida");
-		testtheatre.createRows(1, 10, 7);
+	     int k=0;
+		
+		testtheatre.createRows(k++, 6, 6);
 		theatres.add(testtheatre);
 		
 
@@ -37,71 +39,54 @@ public class Cinema {
 			
 			System.out.println("movie ticket booking system");
 			System.out.println("-----------------");
-			System.out.println("Please Enter 1 to Add Theatre");
-			System.out.println("Please Enter 2 to Add Show");
-			System.out.println("Please Enter 3 to Display Shows");
-			System.out.println("Please Enter 4 to Make Booking");
-			System.out.println("Please Enter 5 to Cancel Booking");
-			System.out.println("Please Enter 6 to Exit\n");
+//			System.out.println("Please Enter 1 to Add Theatre");
+//			System.out.println("Please Enter 2 to Add Show");
+			System.out.println("Please Enter 1 to Display Shows");
+			System.out.println("Please Enter 2 to Make Booking");
+			System.out.println("Please Enter 3 to Cancel Booking");
+			System.out.println("Please Enter 4 to Exit\n");
 			System.out.println("enter the option");
 			option=select.nextInt();
 			
-			if(option==1) {
-				System.out.println("add theatre ");
-				System.out.println("------------------------");
-				System.out.println("enter the name of theatre");
-				String theatrename=choice.nextLine();
-				System.out.println("enter a number for theatre");
-				int theatreno=choice.nextInt();
-				System.out.println("enter the number of rows");
-				int rowcount=choice.nextInt();
-				Theatre theatre=new Theatre(theatreno, theatrename);
-    			theatre.createRows(1, 10, rowcount);
-				theatre.createRows(1,5, 5);
-				theatres.add(theatre);
-			}
+//			if(option==1) {
+//				System.out.println("add theatre ");
+//				System.out.println("------------------------");
+//				System.out.println("enter the name of theatre");
+//				String theatrename=choice.nextLine();
+//				System.out.println("enter a number for theatre");
+//				int theatreno=choice.nextInt();
+//				System.out.println("enter the number of rows");
+//				int rowcount=choice.nextInt();
+//				Theatre theatre=new Theatre(theatreno, theatrename);
+//    			theatre.createRows(1, 10, rowcount);
+//				theatre.createRows(1,5, 5);
+//				theatres.add(theatre);
+//			}
+//			
+//			if (option==2) {
+//				System.out.println("add show selected");
+//				System.out.println("--------------------");
+//				System.out.println("Enter the date of the Show [DD-MM-YYYY]:");
+//				String showdate=choice.nextLine();
+//				System.out.println("enter  name of movie");
+//				String showname=choice.nextLine();
+//				System.out.println("enter time of movie");
+//				String showtime=choice.nextLine();
+//				System.out.println("Select a theatre by typing the number:");
+//				int theatreno=choice.nextInt();
+//
+//				for (int i = 0; i < theatres.size(); i++) {
+//					System.out.println(i+1 + " " + theatres.get(i).getDescription());
+//				}
+//				
+//				shows.add(new Show(showname, showdate, showtime, theatres.get(theatreno-1)));
+//			}
 			
-			if (option==2) {
-				System.out.println("add show selected");
-				System.out.println("--------------------");
-				System.out.println("Enter the date of the Show [DD-MM-YYYY]:");
-				String showdate=choice.nextLine();
-				System.out.println("enter  name of movie");
-				String showname=choice.nextLine();
-				System.out.println("enter time of movie");
-				String showtime=choice.nextLine();
-				System.out.println("Select a theatre by typing the number:");
-				int theatreno=choice.nextInt();
-
-				for (int i = 0; i < theatres.size(); i++) {
-					System.out.println(i+1 + " " + theatres.get(i).getDescription());
-				}
-				
-				shows.add(new Show(showname, showdate, showtime, theatres.get(theatreno-1)));
-			}
-			
-			if (option==3) {
+			if (option==1) {
 				System.out.println("Name of theatre - "  +testtheatre.getDescription() );
 				System.out.println("-------------------------");
 				
-				System.out.println("press 1 for Luxury Seats");
-				System.out.println("press 2 for Premium Seats");
-				System.out.println("press 3 for General Seats");
-
-				int input=choice.nextInt();
-				System.out.println("HI");
-				if(input==1)
-				{
-					System.out.println("your seat type is luxury");
-				}
-				else if (input==2) {
-					System.out.println("your seat type is premium");
-				} 
-				else if (input==3) {
-					System.out.println("your seat type is General");
-				}
-				
-				System.out.println("Display shows selected");
+				System.out.println("Display shows running");
 				System.out.println("----------------");
 				
 				for (int i = 0; i < shows.size(); i++) {
@@ -116,8 +101,8 @@ public class Cinema {
 					System.out.println("End of show list");
 			}
 			
-			if (option==4) {
-				System.out.println("Make Booking Selected");
+			if (option==2) {
+				System.out.println("Select Movie");
 				System.out.println("---------------------");
 				Random rn=new Random();
 				int customerid=rn.nextInt(999);
@@ -140,11 +125,25 @@ public class Cinema {
 				int repeat=0;
 				System.out.println();
 				
+				
+//				System.out.println("Different types of seat available are-");
+//				System.out.println("press 1 for Luxury Seats");
+//				System.out.println("press 2 for Premium Seats");
+//				System.out.println("press 3 for General Seats");
+
+//                System.out.println("enter rowclass");
+//				int input=choice.nextInt();
+//                int rowcount =0;
+                
+				
+				
 				do {
+					System.out.println("Seat Plan is  -  ");
 					shows.get(shownumber-1).getTheatre().printSeatPlan();
+					System.out.println("select your seat");
 					System.out.println("enter the row");
 					int selectedrow=choice.nextInt();
-					System.out.println("enter the selected seat");
+					System.out.println("enter the  seat");
 					int selectedseat=choice.nextInt();
 					System.out.println();
 					Booking booking=new Booking(customer, shows.get(shownumber-1));
@@ -177,12 +176,12 @@ public class Cinema {
 						totalcost +=booking.getCost();
 					}
 				}
-				System.out.println("Customer Id" +customer.getCid());
+				System.out.println("Customer Id - " +customer.getCid());
 				System.out.println("Total Cost - " +totalcost+ "Ruppees");
 				System.out.println();
 			}
 			
-			if (option==5) {
+			if (option==3) {
 				System.out.println("Cancel the booked ticket");
 				System.out.println("---------------------------");
 				System.out.println("enter the Customer ID");
@@ -206,7 +205,7 @@ public class Cinema {
 		} 
 			    System.out.println();
 			}
-			    if(option==6) {
+			    if(option==4) {
 			    	System.exit(0);
 			    }
 		}

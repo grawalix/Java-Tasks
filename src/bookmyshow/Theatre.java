@@ -8,21 +8,38 @@ public class Theatre {
 	private String description;
 	private int rowCount;
 	private ArrayList<Row> rows;
+	private int rowClass;
 	
 	public Theatre(int theatreNumber, String description) {
 		this.theatreNumber = theatreNumber;
 		this.description = description;
-		rows = new ArrayList<Row>();
+		rows = new ArrayList<Row>();                                                                                                                                    
 	}
 
 	public void createRows(int rowClass, int seatCount, int rowCount)
 	{
 	for (int i = 1; i <= rowCount; i++)
 	{
-	rows.add(new Row(rowClass, seatCount, i));
+	rowClass++;	
+	rows.add(new Row(rowClass, seatCount,i));
+	
 	}
+	
 	this.rowCount += rowCount;
 	}
+
+	
+
+//	if(rowCount==1 || rowCount==2)
+//	{
+//		System.out.println("your seat type is luxury");
+//	}
+//	else if (rowCount==3 || rowCount==4) {
+//		System.out.println("your seat type is premium");
+//	} 
+//	else if (rowCount==5 || rowCount==6) {
+//		System.out.println("your seat type is General");
+//	}
 	
 	public ArrayList<Row> getRows()
 	{
@@ -46,9 +63,10 @@ public class Theatre {
 	}
 	}
 	System.out.print(" |");
+	
 	for (int i=1; i <= maxSeatsInRow; i++)
 	{
-	System.out.print(" " + i);
+	System.out.print(i+" ");
 	}
 	System.out.print("\n");
 	System.out.print("----");
