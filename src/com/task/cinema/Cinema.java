@@ -88,8 +88,7 @@ System.out.println("Show Name: " + shows.get(i).getShowName());
 
 System.out.println("Show Date: " + shows.get(i).getShowDate());
 
-//System.out.println("Seat Status:" + shows.get(i).getFreeSeatsCount());
-
+ 
 System.out.println("\n");
 
 }
@@ -139,9 +138,6 @@ int showNumber = choice.nextInt();
 int repeat = 0;
 
 System.out.println();
-
-
-   
 
 do {
 
